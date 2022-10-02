@@ -34,6 +34,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1677905827511714"
      crossorigin="anonymous"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -1181,6 +1182,8 @@
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_replyto">
             <input type="hidden" name="_webhook" value="https://discord.com/api/webhooks/1025031100457812049/067HJtIdp0sc10ldAlk7748XQgipdzXhGyPoElcVejsQgHHEO866wLVet-pz3mQbY0dR">
+            <div class="g-recaptcha" id="rcaptcha"  data-sitekey="6Ldl50oiAAAAADHuLSlwbvttHjm5F6g5ynzU9RGU"></div>
+            <span id="captcha" style="color:red" /></span>
 
             <button class="form-btn" onclick="myFunction()" type="submit" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
@@ -1211,6 +1214,25 @@
 function myFunction() {
 document.myForm.submit();
 document.myForm.reset(); 
+}
+
+</script>
+  
+  <script>
+
+function get_action(form) 
+{
+    var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    else
+    {
+         document.getElementById('captcha').innerHTML="Captcha completed";
+        return true; 
+    }
 }
 
 </script>
